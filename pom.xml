@@ -14,6 +14,10 @@
   <artifactId>Spring-boot-tutorial</artifactId>
   <version>1.0</version>
   
+  <properties>
+  	<tiles.version>3.0.8</tiles.version>
+  </properties>
+  
 	<dependencies>
 	   <dependency>
 	    <groupId>org.springframework.boot</groupId>
@@ -25,9 +29,26 @@
 	    	<groupId>org.apache.tomcat.embed</groupId>
 	    	<artifactId>tomcat-embed-jasper</artifactId>
 		</dependency>
+
+
+	  	<dependency>
+	  		<groupId>org.apache.tiles</groupId>
+	  		<artifactId>tiles-core</artifactId>
+	  		<version>${tiles.version}</version>
+	  	</dependency>
+	  	
+	  	<dependency>
+	  		<groupId>org.apache.tiles</groupId>
+	  		<artifactId>tiles-jsp</artifactId>
+	  		<version>${tiles.version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>javax.servlet</groupId>
+	  		<artifactId>jstl</artifactId>
+	  	</dependency>
 	</dependencies>
 	
-	  <build>
+	<build>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
@@ -38,6 +59,5 @@
       </plugin>
     </plugins>
   </build>
-  
 	  <packaging>war</packaging>
 </project>
