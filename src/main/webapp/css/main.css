@@ -1,0 +1,47 @@
+
+.navbar{
+	background-color: #76bd1d	;
+	border-color:  #76bd1d	;
+}
+
+.navbar > div > .navbar-nav > li > a{
+	background : none;
+	color : white;
+	font-weight: bold;
+}
+
+.navbar > div > .navbar-nav > li > a:hover{
+	background : #34302d;
+	color : white;
+	font-weight: bold;
+}
+
+.navbar > .navbar-toggler{
+		background : #34302d;
+}
+
+.navbar > .navbar-toggler > .navbar-toggler-icon{
+		background : #76bd1d;
+}
+
+.navbar > a {
+	background : none;
+	color : white;
+	font-weight: bold;
+}
+.navbar > a:hover {
+	background : #34302d;
+	color : white;
+	font-weight: bold;
+}
+
+.card > .card-header {
+	background-color: #76bd1d;
+	padding : 20px;
+	color: white;
+}
+
+textarea {
+	width: 100%;
+}
+

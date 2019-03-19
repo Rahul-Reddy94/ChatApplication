@@ -20,4 +20,9 @@ public class PageController {
 	String admin() {
 		return "app.admin";
 	}
+	
+	@RequestMapping("/addstatus")
+	String addStatus() {
+		return "app.addStatus";
+	}
 }
