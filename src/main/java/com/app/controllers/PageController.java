@@ -1,11 +1,14 @@
 package com.app.controllers;
 
-import java.util.Date;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.Service.StatusUpdateService;
@@ -33,29 +36,46 @@ public class PageController {
 		return "app.admin";
 	}
 	
-	@RequestMapping(value = "/addstatus", method = RequestMethod.GET)
-	ModelAndView addStatus(ModelAndView modelAndView) {
-		
-		modelAndView.setViewName("app.addStatus");
-		StatusUpdate statusUpdate = new StatusUpdate();
-		//StatusUpdate latestStatusUpdate = (StatusUpdate) modelAndView.getModel().get("lsuGetKey");
-		StatusUpdate latestStatusUpdate = statusUpdateService.findLatest();
-		modelAndView.getModel().put("statusUpdate", statusUpdate);
-		modelAndView.getModel().put("latestStatusUpdate", latestStatusUpdate);
+	@RequestMapping(value = "/viewStatus", method = RequestMethod.GET) 
+	ModelAndView viewStatus(ModelAndView modelAndView,@RequestParam(name="p",defaultValue="1") int pageNumber) {
+ 
+		System.out.println("*************" +pageNumber);
+		modelAndView.setViewName("app.viewStatus");
 
-		//modelAndView.getModel().put("lsuGetKey", latestStatusUpdate);
-		//StatusUpdate latestStatusUpdate = (StatusUpdate) modelAndView.getModel().get("lsuGetKey");
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/addstatus", method = RequestMethod.GET) 
+	ModelAndView addStatus(ModelAndView modelAndView,  @ModelAttribute("update") StatusUpdate modelGetKey) {
+
+		modelAndView.setViewName("app.addStatus");
+		StatusUpdate latestStatusUpdate = statusUpdateService.findLatest();
+		modelAndView.getModel().put("latestStatusUpdate", latestStatusUpdate);
+		
 		return modelAndView;
 	}
 	
 	@RequestMapping(value = "/addstatus", method = RequestMethod.POST)
-	ModelAndView addStatus(ModelAndView modelAndView, StatusUpdate lsuPostKey) {
+	ModelAndView addStatus(ModelAndView modelAndView, @Valid @ModelAttribute("update") StatusUpdate modelPostKey, BindingResult bindedResult) {
 		
 		modelAndView.setViewName("app.addStatus"); 
-		statusUpdateService.save(lsuPostKey);
+		
+		if(!bindedResult.hasErrors()) {
+			statusUpdateService.save(modelPostKey);
+			modelAndView.getModel().put("update", new StatusUpdate());
+		}
 		
 		StatusUpdate latestStatusUpdate = statusUpdateService.findLatest();
-		modelAndView.getModel().put("lsuGetKey", latestStatusUpdate);
+		modelAndView.getModel().put("latestStatusUpdate", latestStatusUpdate);
+
 		return modelAndView;
 	}
 }
+
+//modelAndView.getModel().put("update", new StatusUpdate());
+
+//System.out.println("000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
+//System.out.println("888888888888888888888888888888888888888888888888888888888888888888888888888888888888");
+//System.out.println("**********************************************************************************");
+//System.out.println("9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999");

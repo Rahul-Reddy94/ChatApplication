@@ -19,19 +19,19 @@
       	</definition>
       	
       <definition name="app.about" extends="app.homepage">
-        	<put-attribute name="title" value="Full Stack Initial Steps  IN ABOUT  "/>	
         	<put-attribute name="content" value="/WEB-INF/tiles/about.jsp"></put-attribute>
       	</definition>
       	
       <definition name="app.admin" extends="app.homepage">
-        	<put-attribute name="title" value="Full Stack Initial Steps IN ADMIN  "/>	
         	<put-attribute name="content" value="/WEB-INF/tiles/admin.jsp"></put-attribute>
       	</definition>
       	
       	<definition name="app.addStatus" extends="app.homepage">
-        	<put-attribute name="title" value="Full Stack Initial Steps IN ADMIN  "/>	
         	<put-attribute name="content" value="/WEB-INF/tiles/addStatus.jsp"></put-attribute>
       	</definition>
       	
+      	<definition name="app.viewStatus" extends="app.homepage">
+        	<put-attribute name="content" value="/WEB-INF/tiles/viewStatus.jsp"></put-attribute>
+      	</definition>
     
      </tiles-definitions>
