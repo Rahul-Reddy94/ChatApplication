@@ -1,8 +1,12 @@
 package com.app.controllers;
 
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -36,11 +40,17 @@ public class PageController {
 		return "app.admin";
 	}
 	
-	@RequestMapping(value = "/viewStatus", method = RequestMethod.GET) 
-	ModelAndView viewStatus(ModelAndView modelAndView,@RequestParam(name="p",defaultValue="1") int pageNumber) {
+	@RequestMapping(value = "/viewstatus", method = RequestMethod.GET) 
+	ModelAndView viewStatus(ModelAndView modelAndView, @RequestParam(name="p",defaultValue="1") int pageNumber) {
  
-		System.out.println("*************" +pageNumber);
-		modelAndView.setViewName("app.viewStatus");
+		Page<StatusUpdate> statusPage= statusUpdateService.getPage(pageNumber);
+		/*
+		 * List<StatusUpdate> list = page.getContent(); for (StatusUpdate statusUpdate :
+		 * list) { System.out.println(statusUpdate.getText() +
+		 * "..............................................s"); }
+		 */
+		modelAndView.setViewName("app.viewstatus");
+		modelAndView.getModel().put("statusPageKey", statusPage);
 
 		
 		return modelAndView;

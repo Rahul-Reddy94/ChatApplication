@@ -41,6 +41,8 @@
     
     <ul class="nav navbar-nav navbar-right">
                <li class="nav-item"> <a class="nav-link" href="/addstatus">Add Status</a></li>
+               <li class="nav-item"> <a class="nav-link" href="/viewstatus">View Status</a></li>
+               
            </ul>
     </div>
  

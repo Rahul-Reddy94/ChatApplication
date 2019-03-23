@@ -15,15 +15,14 @@
 <!-- 			<div class="card-title">THis is Panel Body</div>
 	 -->
 	 	<form:form modelAttribute="update">
-	 		 	<div class="errorsz" style="color:red">
+	 		 	<div class="errorsz"	>
 	 				<form:errors path="text"/>
 	 			</div>
 	 		<div class="form-group">
-<%-- 	 		Here Path is the Text field
-	 		and 
+	<%--	Here Path is the Text field and 
 	 		If We dont want to 'ID' to get updated then we should set it to 'HIDDEN'
-	 		
-	 		 ******* <form:input path="id" type="hidden"/> **********--%>
+	 		 ******* <form:input path="id" type="hidden"/> **********
+	 		 --%>
 	 			<form:textarea path="text" name="text" rows="10" cols="50"></form:textarea>
 	 		</div>
 	 			<input type="submit" name ="submit" value="Add Status">
@@ -52,7 +51,6 @@
 	  </div>
 	</div>	
 </div>
-		
 <!-- <div class="alert alert-primary" role="alert">
   A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
 </div>
