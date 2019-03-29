@@ -1,5 +1,7 @@
 package com.app.Service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,9 +27,15 @@ public class StatusUpdateService {
 	}
 	
 	public Page<StatusUpdate> getPage(int pageNumber){
-		PageRequest req = PageRequest.of(pageNumber-1, 3, Sort.Direction.DESC,"added");
-		
+		PageRequest req = PageRequest.of(pageNumber-1, PAGE_SIZE, Sort.Direction.DESC, "added");
 		return statusUpdateDao.findAll(req);
-		
+	}
+
+	public void delete(Long id) {
+		statusUpdateDao.deleteById(id);
+	}
+
+	public Optional<StatusUpdate> get(Long id) {
+		return statusUpdateDao.findById(id);
 	}
 }

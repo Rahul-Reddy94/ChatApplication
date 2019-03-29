@@ -52,6 +52,56 @@ textarea {
 .pagination{
 	margin-top : 20px;
 	margin-bottom : 20px;
+}
+
+.homepage-status{
+	text-align:   center;
+	margin-top: 30px;
+	font-size: larger;
+}
+
+.show > .btn-secondary.dropdown-toggle{
+
+	background-color: #004001;
+	border-color: #0a0a0a;
+	font-weight: bold;
+	padding-right: 20px;
+}
+
+.edit-links{
+	margin-top: 15px;
+	text-shadow: black;
+}
+
+.login-class > div > .card-body >.login-form > .form-group > .btn-primary {
+    background-color: #26d618;
+    border-color: #090a0a;
+    margin-top: 20px;
 
 }
 
+.logout-styler {
+	margin: 10px;
+	background: none;
+    color: white;
+    font-weight: bold;
+}
+
+.navbar > div > div > a{
+	background : none;
+	color : white;
+	font-weight: bold;
+	margin: 10px; 
+	padding: 5px;
+}
+
+.navbar > div > div > a:hover{
+	background : #34302d;
+	color : white;
+	font-weight: bold;
+}
+
+.login-section > div > div > .panel-body > .login-form > div{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}

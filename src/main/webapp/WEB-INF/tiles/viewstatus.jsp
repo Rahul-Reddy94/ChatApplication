@@ -2,49 +2,39 @@
     pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="jwp" %>
 
 <c:url var="url" value="/viewstatus"/>
+
+
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
 	
-	<div class="pagination">
-		<c:forEach var="pageNumber" begin="1" end="${statusPageKey.totalPages}">
-			<c:choose>
-			<c:when test="${pageNumber - 1 != statusPageKey.number}">
-			
-				<a href="${url}?p=${pageNumber}"><c:out value="  ${pageNumber}"  />  </a>
-			</c:when>
-			 <c:otherwise>
-				<strong><c:out value=" ${pageNumber} "/></strong>
-			</c:otherwise>
-		</c:choose> 
-		<c:if test="${pageNumber != statusPageKey.totalPages}">&nbsp;|&nbsp;
-		</c:if>
-		</c:forEach>
-	</div>
+		<jwp:pagination url="${url}" statusPageKey="${statusPageKey}"/>
 	
 		<c:forEach items="${statusPageKey.content}" var="list" varStatus="status">
+		
+			<c:url var="editLink" value="/editstatus?id=${list.id}"/>
+			<c:url var="deleteLink" value="/deletestatus?id=${list.id}"/>
+		
 		     <div class="card" >
 			    <div class="card-header">
 			    	<div class="card-title"><fmt:formatDate type="both" dateStyle = "long" timeStyle = "long" value="${list.added}"/></div>
 			    </div>
 			    <div class="card-body">
-					<div class="card-title"><c:out value = "${list.text}"/></div>
+					<div class="card-title">
+						${list.text}
+					<div class="edit-links pull-right">
+						<a href="${editLink}">Edit</a> || <a onclick="return confirm('Do you want to delete the Update ? ')" href="${deleteLink}">Delete</a>
+						
+					</div>
+					</div>
 			 	</div>
-			 	</div>
+			 </div>
 		</c:forEach>
+		
 	</div>
-	</div>
-</body>
-</html>
+</div>
 
 	<%--View Status here
 	now page number is : ${param.p}

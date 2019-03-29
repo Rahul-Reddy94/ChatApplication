@@ -2,6 +2,9 @@
     pageEncoding="ISO-8859-1"%>
     
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>  
+
     
 <!DOCTYPE html>
 <html>
@@ -34,19 +37,38 @@
       <li class="nav-item">
         <a class="nav-link" href="/about">About</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/admin">Admin Area</a>
-      </li>
     </ul>
     
-    <ul class="nav navbar-nav navbar-right">
-               <li class="nav-item"> <a class="nav-link" href="/addstatus">Add Status</a></li>
-               <li class="nav-item"> <a class="nav-link" href="/viewstatus">View Status</a></li>
-               
-           </ul>
-    </div>
+	    <div class="dropdown show nav navbar-nav navbar-right">
+		  
+		  	<sec:authorize access="!isAuthenticated()">
+		     <a	href="/login">Login</a>
+		     <a	href="/register">Register</a>
+		     
+			</sec:authorize>
+	  		
+	  		<sec:authorize access="isAuthenticated()">
+	  		 	<a href="javascript:$('#logoutForm').submit();">Logout</a>
+	  		 	</sec:authorize>
+	  		 	<sec:authorize access="hasRole('ROLE_ADMIN')">
+			 	<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  		Status</a>
+
+			  	<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+			    <a class="dropdown-item" href="/addstatus">Add Status</a>
+			    <a class="dropdown-item" href="/viewstatus">View Status Updates</a>
+			  </div>
+			  </sec:authorize>
+		</div>
+	</div>
  
-</nav>	
+</nav>
+
+<c:url var="logoutLink" value="/logout" />
+
+<form id="logoutForm"  style="logout-styler" method="post" action="${logoutLink}">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+</form>
 
 	<div class = "container">
 		<tiles:insertAttribute name="content"/>
