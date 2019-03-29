@@ -70,6 +70,9 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", role=" + role + "]";
 	}
-
+	
+	public void justStagingMessage() {
+		System.out.print("JUST TESTING");
+	}
 
 }
