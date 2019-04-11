@@ -1,16 +1,20 @@
 package com.app;
 
+import org.owasp.html.HtmlPolicyBuilder;
+import org.owasp.html.PolicyFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 
+@EnableAsync
 @SpringBootApplication
 public class App {
 
@@ -38,6 +42,13 @@ public class App {
 		return new BCryptPasswordEncoder();
 	}
 
+	@Bean
+	public PolicyFactory getUserHtmlPolicyFactory() {
+		return new HtmlPolicyBuilder()
+				.allowCommonBlockElements()
+				.allowCommonInlineFormattingElements()
+				.toFactory();
+	}
 	
 }
 

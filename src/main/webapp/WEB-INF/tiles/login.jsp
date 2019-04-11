@@ -28,18 +28,15 @@
 						value="${_csrf.token}" />
 
 					<div class="input-group">
-						<input type="text" name="username" placeholder="Username"
-							class="form-control" />
+						<input type="text" name="username" placeholder="Username" class="form-control" />
 					</div>
 
 					<div class="input-group">
-						<input type="password" name="password" placeholder="Password"
-							class="form-control" />
+						<input type="password" name="password" placeholder="Password" class="form-control" />
 					</div>
 
 					<div class="input-group">
-						<button type="submit" class="btn-primary pull-right">Sign
-							In</button>
+						<button type="submit" class="btn-primary pull-right">Sign In</button>
 					</div>
 
 				</form>

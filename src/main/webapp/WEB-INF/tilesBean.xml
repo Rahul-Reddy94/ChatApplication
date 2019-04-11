@@ -22,7 +22,9 @@
         	<put-attribute name="content" value="/WEB-INF/tiles/about.jsp"></put-attribute>
       	</definition>
       	
-      <definition name="app.login" extends="app.homepage">
+      	<!--  Authentication Related Pages-->
+      	
+     	 <definition name="app.login" extends="app.homepage">
         	<put-attribute name="content" value="/WEB-INF/tiles/login.jsp"></put-attribute>
       	</definition>
       	
@@ -30,6 +32,20 @@
         	<put-attribute name="content" value="/WEB-INF/tiles/register.jsp"></put-attribute>
       	</definition>
       	
+      	<definition name="app.verifyEmail" extends="app.homepage">
+        	<put-attribute name="content" value="/WEB-INF/tiles/verifyemail.jsp"></put-attribute>
+      	</definition>
+      	
+      	<!-- User Related -->
+      	<definition name="app.profile" extends="app.homepage">
+        	<put-attribute name="content" value="/WEB-INF/tiles/profile.jsp"></put-attribute>
+      	</definition>
+      	
+      	<definition name="app.editProfile" extends="app.homepage">
+        	<put-attribute name="content" value="/WEB-INF/tiles/editProfileAbout.jsp"></put-attribute>
+      	</definition>
+      	
+      	<!-- STATUS RELATED -->
       	<definition name="app.addStatus" extends="app.homepage">
         	<put-attribute name="content" value="/WEB-INF/tiles/addstatus.jsp"></put-attribute>
       	</definition>
@@ -46,6 +62,13 @@
         	<put-attribute name="content" value="/WEB-INF/tiles/editstatus.jsp"></put-attribute>
       	</definition>
       	
+      	<!-- Helpers -->
+      	<definition name="app.errorPage" extends="app.homepage">
+        	<put-attribute name="content" value="/WEB-INF/tiles/error.jsp"></put-attribute>
+      	</definition>
       	
+      	<definition name="app.message" extends="app.homepage">
+        	<put-attribute name="content" value="/WEB-INF/tiles/message.jsp"></put-attribute>
+      	</definition>
       	
      </tiles-definitions>

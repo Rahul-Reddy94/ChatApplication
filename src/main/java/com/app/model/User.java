@@ -8,12 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.app.validation.PasswordMatch;
 
 
 @Entity
 @Table(name = "users")
+@PasswordMatch(message = "{register.repeatPassword.mismatch}")
 public class User {
 
 	@Id
@@ -21,19 +26,29 @@ public class User {
 	@Column(name = "id")
 	private int id; 
 	
+	@SuppressWarnings("deprecation")
 	@Column(name = "email", nullable = false, unique = true)
-	@Email(message = "Please provide a valid e-mail")
+	@Email(message = "{register.invalidEmail}")
 	@NotEmpty(message = "Please provide an e-mail")
 	private String email; 
 	
 	@Column(name = "password",length=60)
-	@NotEmpty(message = "Please provide an e-mail")
-//	@Transient
+	@NotEmpty(message = "{register.enterEmail}")
 	private String password;
 
-	@Column(name = "role")
+	@Transient
+	@Size(min=5,max = 15,message="{register.password.size}")
+	private String plainPassword;
+	
+	@Transient
+	private String repeatPassword;
+	
+	@Column(name = "role", length =20)
 	private String role;
 
+	@Column(name = "enabled")
+	private Boolean enabled = false;
+	
 	public String getRole() { 
 		return role;
 	}
@@ -66,13 +81,35 @@ public class User {
 		this.password = password;
 	}
 
+	public String getPlainPassword() {
+		return plainPassword;
+	}
+
+	public void setPlainPassword(String plainPassword) {
+		this.password = new BCryptPasswordEncoder().encode(plainPassword);
+		this.plainPassword = plainPassword;
+	}
+	
+	public String getRepeatPassword() {
+		return repeatPassword;
+	}
+
+	public void setRepeatPassword(String repeatPassword) {
+		this.repeatPassword = repeatPassword;
+	}
+	
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", role=" + role + "]";
 	}
-	
-	public void justStagingMessage() {
-		System.out.print("JUST TESTING");
-	}
 
+	
 }

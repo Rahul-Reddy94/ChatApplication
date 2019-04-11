@@ -51,7 +51,7 @@ public class StatusUpdateController{
 	@RequestMapping(value = "/addstatus", method = RequestMethod.POST)
 	ModelAndView addStatus(ModelAndView modelAndView, @Valid @ModelAttribute("update") StatusUpdate modelPostKey, BindingResult bindedResult) {
 		
-		modelAndView.setViewName("app.addStatus"); 
+//		modelAndView.setViewName("app.addStatus"); 
 		
 		if(!bindedResult.hasErrors()) {
 			statusUpdateService.save(modelPostKey);

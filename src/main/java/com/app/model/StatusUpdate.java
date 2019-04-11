@@ -118,8 +118,4 @@ public class StatusUpdate {
 	public String toString() {
 		return "StatusUpdate [id=" + id + ", text=" + text + ", added=" + added + "]";
 	}
-	
-	
-	
-	
 }

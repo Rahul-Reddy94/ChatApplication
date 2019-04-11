@@ -48,9 +48,11 @@
 			</sec:authorize>
 	  		
 	  		<sec:authorize access="isAuthenticated()">
+	  		 	<a href="/profile">Profile</a>
 	  		 	<a href="javascript:$('#logoutForm').submit();">Logout</a>
-	  		 	</sec:authorize>
-	  		 	<sec:authorize access="hasRole('ROLE_ADMIN')">
+	  		</sec:authorize>
+	  		 	
+	  		<sec:authorize access="hasRole('ROLE_ADMIN')">
 			 	<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			  		Status</a>
 
@@ -58,7 +60,7 @@
 			    <a class="dropdown-item" href="/addstatus">Add Status</a>
 			    <a class="dropdown-item" href="/viewstatus">View Status Updates</a>
 			  </div>
-			  </sec:authorize>
+			</sec:authorize>
 		</div>
 	</div>
  

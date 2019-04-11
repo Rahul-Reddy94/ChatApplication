@@ -29,9 +29,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http
 			.authorizeRequests()
-				.antMatchers("/",
+				.antMatchers(
+						"/",
 						"/about",
-						"/register")
+						"/register",
+						"/registrationconfirmed",
+						"/expiredtoken",
+						"/invaliduser",
+						"/confirmregistration", 
+						"/registrationconfirmed", 
+						"/expiredtoken", 
+						"/verifyemail", 
+						"/invaliduser",
+						"/edit-profile-about")
 				.permitAll()
 				.antMatchers(
 					"/js/*",
@@ -44,6 +54,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/deletestatus",
 						"/editstatus")
 				.hasRole("ADMIN")
+				.antMatchers("/profile")
+				.authenticated()
+				.anyRequest()
+				.denyAll()
 				.and()
 			.formLogin()
 				.loginPage("/login")
@@ -58,22 +72,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// @formatter:on
 	}
 	
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		
-		// @formatter:off
-		auth
-			.inMemoryAuthentication()
-			.withUser("john")
-			.password("{noop}hello")
-			.authorities("ROLE_USER")
-			.and()
-			.withUser("demo")
-			.password("{noop}hello")
-			.authorities("ROLE_USER","ROLE_ADMIN" );				
-		// @formatter:on
+	/*
+	 * @Autowired public void configureGlobal(AuthenticationManagerBuilder auth)
+	 * throws Exception {
+	 * 
+	 * // @formatter:off auth .inMemoryAuthentication() .withUser("john")
+	 * .password("{noop}hello") .authorities("ROLE_USER") .and() .withUser("demo")
+	 * .password("{noop}hello") .authorities("ROLE_USER","ROLE_ADMIN" );
+	 * // @formatter:on
+	 * 
+	 * }
+	 */
 
-	}
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
